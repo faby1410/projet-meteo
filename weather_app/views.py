@@ -27,10 +27,10 @@ def index(request):
             "daily_forecasts2": daily_forecasts2
 
         }
-        return render(request, "lien_html.html", context)
+        return render(request, "index.html", context)
     else:
         
-        return render(request, "lien_html.html")
+        return render(request, "index.html")
 
 
 def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_url):
