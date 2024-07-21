@@ -8,8 +8,8 @@ def index(request):
     #API_KEY = os.getenv("API_KEY")
     API_KEY= "3c7ca3a08e9a3455816efeb6a7c863bf"
     base_url = "https://api.openweathermap.org/data/2.5"
-    current_weather_url = f"{base_url}/weather?q={{}}&appid={{}}"
-    forecast_url = f"{base_url}/forecast?q={{}}&appid={{}}"
+    current_weather_url = f"{base_url}/weather?q={{}}&appid={{}}&units=metric"
+    forecast_url = f"{base_url}/forecast?q={{}}&appid={{}}&units=metric"
    
     if request.method =="POST":
         city1 = request.POST.get("city1", "Dakar")
@@ -47,13 +47,13 @@ def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_url)
     }
 
     daily_forecasts = []
-    for daily_data in forecast_response["daily"][:5]:
-        daily_forecasts.append({
+    for daily_data in forecast_response["list"]:
+            daily_forecasts.append({
             "day": datetime.datetime.fromtimestamp(daily_data["dt"]).strftime("%A"),
-            "min_temp": round(daily_data["temp"]["min"] -273.15, 2),
-            "max_temp": round(daily_data["temp"]["max"] -273.15, 2),
+            "min_temp": round(daily_data["main"]["temp_min"]),
+            "max_temp": round(daily_data["main"]["temp_max"]),
             "description": daily_data["weather"][0]["description"],
             "icon": daily_data["weather"][0]["icon"]
-        })
+            })
     return weather_data, daily_forecasts
         
