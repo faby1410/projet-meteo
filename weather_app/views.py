@@ -6,13 +6,11 @@ import os
 # Create your views here.
 def index(request):
     #API_KEY = os.getenv("API_KEY")
-    API_KEY = "0b089d6b5d1f90531aec46496a082052"
+    API_KEY= "3c7ca3a08e9a3455816efeb6a7c863bf"
     base_url = "https://api.openweathermap.org/data/2.5"
     current_weather_url = f"{base_url}/weather?q={{}}&appid={{}}"
-    forecast_url = f"{base_url}/onecall?lat={{}}&lon={{}}&exclude=current,minutely,hourly,alerts&appid={{}}"
+    forecast_url = f"{base_url}/forecast?q={{}}&appid={{}}"
    
-   
- 
     city1 = request.POST.get("city1", "Dakar")
     city2 = request.POST.get("city2", "Paris")
 
@@ -37,10 +35,8 @@ def index(request):
 
 def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_url):
     response = requests.get(current_weather_url.format(city,api_key)).json()
-    lat, lon = response["coord"]["lat"], response["coord"]["lon"]
-    forecast_response = requests.get(forecast_url.format(lat, lon, api_key)).json()
-    
-    print(f"forecast result is {forecast_response}")
+    #lat, lon = response["coord"]["lat"], response["coord"]["lon"]
+    forecast_response = requests.get(forecast_url.format(city, api_key)).json()
 
     weather_data = {
         "city": city,
