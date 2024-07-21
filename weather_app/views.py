@@ -5,13 +5,14 @@ from django.shortcuts import render
 import os
 # Create your views here.
 def index(request):
-    API_KEY = os.getenv("API_KEY")
+    #API_KEY = os.getenv("API_KEY")
+    API_KEY= "3c7ca3a08e9a3455816efeb6a7c863bf"
     base_url = "https://api.openweathermap.org/data/2.5"
     current_weather_url = f"{base_url}/weather?q={{}}&appid={{}}"
-    forecast_url = f"{base_url}/onecall?lat={{}}&lon={{}}&exclude=current,minutely,hourly,alerts&appid={{}}"
+    forecast_url = f"{base_url}/forecast?lat={{}}&lon={{}}&exclude=current,minutely,hourly,alerts&appid={{}}"
    
     if request.method =="POST":
-        city1 = request.POST.get("city1")
+        city1 = request.POST.get("city1", "Dakar")
         city2 = request.POST.get("city2", None)
 
         weather_data1, daily_forecasts1 = fetch_weather_and_forecast(city1, API_KEY, current_weather_url, forecast_url)
@@ -27,10 +28,10 @@ def index(request):
             "daily_forecasts2": daily_forecasts2
 
         }
-        return render(request, "lien_html.html", context)
+        return render(request, "index.html", context)
     else:
         
-        return render(request, "lien_html.html")
+        return render(request, "index.html")
 
 
 def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_url):
