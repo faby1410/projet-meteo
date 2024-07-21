@@ -5,38 +5,42 @@ from django.shortcuts import render
 import os
 # Create your views here.
 def index(request):
-    API_KEY = os.getenv("API_KEY")
+    #API_KEY = os.getenv("API_KEY")
+    API_KEY = "0b089d6b5d1f90531aec46496a082052"
     base_url = "https://api.openweathermap.org/data/2.5"
     current_weather_url = f"{base_url}/weather?q={{}}&appid={{}}"
     forecast_url = f"{base_url}/onecall?lat={{}}&lon={{}}&exclude=current,minutely,hourly,alerts&appid={{}}"
    
-    if request.method =="POST":
-        city1 = request.POST.get("city1")
-        city2 = request.POST.get("city2", None)
+   
+ 
+    city1 = request.POST.get("city1", "Dakar")
+    city2 = request.POST.get("city2", "Paris")
 
-        weather_data1, daily_forecasts1 = fetch_weather_and_forecast(city1, API_KEY, current_weather_url, forecast_url)
-        if city2:
+    weather_data1, daily_forecasts1 = fetch_weather_and_forecast(city1, API_KEY, current_weather_url, forecast_url)
+    if city2:
             weather_data2, daily_forecasts2 = fetch_weather_and_forecast(city2, API_KEY, current_weather_url, forecast_url)
-        else:
+    else:
             weather_data2, daily_forecasts2 = None, None
 
-        context = {
+    context = {
             "weather_data1": weather_data1,
             "daily_forecasts1": daily_forecasts1,
             "weather_data2": weather_data2,
             "daily_forecasts2": daily_forecasts2
 
         }
-        return render(request, "index.html", context)
-    else:
+    return render(request, "index.html", context)
+    
         
-        return render(request, "index.html")
-
+   
+        
 
 def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_url):
     response = requests.get(current_weather_url.format(city,api_key)).json()
     lat, lon = response["coord"]["lat"], response["coord"]["lon"]
     forecast_response = requests.get(forecast_url.format(lat, lon, api_key)).json()
+    
+    print(f"forecast result is {forecast_response}")
 
     weather_data = {
         "city": city,
@@ -55,4 +59,3 @@ def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_url)
             "icon": daily_data["weather"][0]["icon"]
         })
     return weather_data, daily_forecasts
-        

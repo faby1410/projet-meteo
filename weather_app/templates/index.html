@@ -6,13 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
 <body>
+   <div class="weatherme">
+     <h1 class="legend">Your current weather and forecast at your fingertips!</h1>
+     
+   </div>
+   
     <form method="post">
         {% csrf_token %}
-        <input type="text" name="city1" placeholder="City 1">
-        <input type="text" name="city2" placeholder="City 2">
+        <input type="text" name="city1" placeholder="Enter a City">
+        <input type="text" name="city2" placeholder="Enter a City">
         <button type="submit">Compare Weather</button>
     </form>
 
