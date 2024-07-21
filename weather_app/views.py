@@ -53,4 +53,5 @@ def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_url)
             "max_temp": round(daily_data["main"]["temp_max"]),
             "description": daily_data["weather"][0]["description"],
             "icon": daily_data["weather"][0]["icon"]
+            })
     return weather_data, daily_forecasts
