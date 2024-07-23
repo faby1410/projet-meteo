@@ -15,13 +15,13 @@
 </head>
 <body>
    <div class="weatherme">
-     <h1 class="legend">Your current weather and forecast at your fingertips!</h1>
+     <h1 class="legend">Votre météo actuelle et vos prévisions à portée de main!</h1>
    </div>
    
     <form method="post">
         {% csrf_token %}
-        <input type="text" name="city1" placeholder="Enter a City">
-        <button type="submit">Compare Weather</button>
+        <input type="text" name="city1" placeholder="Entrer une ville">
+        <button type="submit">Voir la meteo</button>
     </form>
 
     <div class="comparison-container">
@@ -31,6 +31,6 @@
             </div>
         {% endif %}
     </div>
-    
+
 </body>
 </html>
