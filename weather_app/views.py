@@ -12,21 +12,16 @@ def index(request):
     forecast_url = f"{base_url}/forecast?q={{}}&appid={{}}&units=metric"
    
     city1 = request.POST.get("city1", "Dakar")
-    city2 = request.POST.get("city2", "Paris")
+
 
     weather_data1, daily_forecasts1 = fetch_weather_and_forecast(city1, API_KEY, current_weather_url, forecast_url)
-    if city2:
-            weather_data2, daily_forecasts2 = fetch_weather_and_forecast(city2, API_KEY, current_weather_url, forecast_url)
-    else:
-            weather_data2, daily_forecasts2 = None, None
+
 
     context = {
             "weather_data1": weather_data1,
             "daily_forecasts1": daily_forecasts1,
-            "weather_data2": weather_data2,
-            "daily_forecasts2": daily_forecasts2
-
         }
+    
     return render(request, "index.html", context)
     
         
@@ -40,7 +35,7 @@ def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_url)
 
     weather_data = {
         "city": city,
-        "temperature": round(response["main"]["temp"] - 273.15, 2),
+        "temperature": response["main"]["temp"],
         "description": response["weather"][0]["description"],
         "icon": response["weather"][0]["icon"]
     }

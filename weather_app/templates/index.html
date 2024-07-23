@@ -15,15 +15,13 @@
 </head>
 <body>
    <div class="weatherme">
-     <h1 class="legend">Your current weather and forecast at your fingertips!</h1>
-     
+     <h1 class="legend">Votre météo actuelle et vos prévisions à portée de main!</h1>
    </div>
    
     <form method="post">
         {% csrf_token %}
-        <input type="text" name="city1" placeholder="Enter a City">
-        <input type="text" name="city2" placeholder="Enter a City">
-        <button type="submit">Compare Weather</button>
+        <input type="text" name="city1" placeholder="Entrer une ville">
+        <button type="submit">Voir la meteo</button>
     </form>
 
     <div class="comparison-container">
@@ -32,11 +30,7 @@
                 {% include "city_weather.html" with weather_data=weather_data1 daily_forecasts=daily_forecasts1 %}
             </div>
         {% endif %}
-        {% if weather_data2 %}
-            <div class="city-container">
-                {% include "city_weather.html" with weather_data=weather_data2 daily_forecasts=daily_forecasts2 %}
-            </div>
-        {% endif %}
     </div>
+
 </body>
 </html>
