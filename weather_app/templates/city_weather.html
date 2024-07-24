@@ -1,12 +1,13 @@
 {% if weather_data %}
-  <h1>{{ weather_data.city }}</h1>
+<h1>{{ weather_data.city }}</h1>
   <h2>{{ weather_data.temperature }}</h2>
   <p>{{ weather_data.description }}</p>
   <img src="http://openweathermap.org/img/w/{{ weather_data.icon }}.png" alt="{{ weather_data.description }}">
-{% endif %}
+
+   {% endif %}
 
 {% if daily_forecasts %}
-<h2>Prévisions sur 5 jours</h2>
+<h2><u> Prévisions sur 5 jours 👇🏼 <u/></h2>
    <div class="forecast-container">
         {% for forecast in daily_forecasts %}
            <div class="forecast">

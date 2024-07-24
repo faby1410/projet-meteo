@@ -1,99 +1,63 @@
-/* Réinitialisation de quelques styles de base pour une meilleure compatibilité */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Style de base pour le corps de la page */
 body {
-    font-family: Arial, sans-serif;
-    size: 100px;
-    background-image: url(../static/images/photo3.jpg);
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
+  font-family: Arial, sans-serif;
+  size: 100px;
+  background-image: url(../static/images/photo3.jpg);
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  text-align: center;
+  padding: 50px;
+}
+  
+.legend { 
+  font-family: "Caveat";
+  color: rgb(186, 243, 243);
+  margin-bottom: 100px;
 }
 
-.weatherme {
-    display: flex;
-    flex-direction: column;
-}
-
-.legend {
-    font-family: "Caveat" ;
-    color: rgb(186, 243, 243);
-    margin-bottom: 100px;
-}
-
-.icon {
-    size: 5px;
-}
-
-/* Style du formulaire */
 form {
-    background: linear-gradient(70deg, #f9fcfd, #70def1ed);
-    opacity: 150px;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 2px 5px rgba(76, 76, 75, 0.87);
-    margin-bottom: 200px;
-    width: 300%;
-    max-width: 500px;
-    text-align: center;
-
+  margin: 20px 0;
 }
-
 
 input[type="text"] {
-    font-family: "Open Sans";
-    width: 100%;
-    padding: 15px;
-    margin: 10px 0;
-    border: 1px solid #e8f6ff;
-    border-radius: 50px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
-
+  
 button {
-    font-family: "Open Sans";
-    font-size: 15px;
-    padding: 10px 20px;
-    background-color: #07e3fc;
-    color: rgb(254, 254, 253);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  background-color: #6cb3e5;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+} 
+  
+.forecast-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
+  
 
-button:hover {
-    background-color: #0190b7;
+.forecast {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin: 10px;
+  width: calc(100% / 5 - 20px);
+  box-sizing: border-box;
 }
-
-/* Style du conteneur de comparaison */
-.comparison-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    width: 100%;
-}
-
-.city-container {
-    background: #fbfbfc;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 300px;
-    text-align: center;
-}
-
-
-
-
-
+  
+  @media (max-width: 767px) {
+    .forecast {
+      width: calc(50% - 20px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .forecast {
+      width: 100%;
+    }
+  }
